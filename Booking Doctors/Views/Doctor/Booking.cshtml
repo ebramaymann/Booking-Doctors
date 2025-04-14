@@ -1,0 +1,39 @@
+﻿@model Doctor
+@{
+    ViewData["Title"] = "Book Appointment";
+}
+
+
+<div class="container mt-5">
+    <h2>Book an Appointment with @Model.Name</h2>
+
+    <form method="post" class="needs-validation" novalidate>
+        @* Validation Summary *@
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="text-danger mb-3">
+                Please fix the errors below.
+            </div>
+        }
+
+        <div class="mb-3">
+            <label for="PatientName" class="form-label">Patient Name</label>
+            <input type="text" class="form-control" id="PatientName" name="Input.PatientName" value="" required />
+            <span class="text-danger">@ViewData.ModelState["Input.PatientName"]?.Errors.FirstOrDefault()?.ErrorMessage</span>
+        </div>
+
+        <div class="mb-3">
+            <label for="AppointmentDate" class="form-label">Appointment Date</label>
+            <input type="date" class="form-control" id="AppointmentDate" name="Input.AppointmentDate" value="" required />
+            <span class="text-danger">@ViewData.ModelState["Input.AppointmentDate"]?.Errors.FirstOrDefault()?.ErrorMessage</span>
+        </div>
+
+        <div class="mb-3">
+            <label for="AppointmentTime" class="form-label">Appointment Time</label>
+            <input type="time" class="form-control" id="AppointmentTime" name="Input.AppointmentTime" value="" required />
+            <span class="text-danger">@ViewData.ModelState["Input.AppointmentTime"]?.Errors.FirstOrDefault()?.ErrorMessage</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Appointment</button>
+    </form>
+</div>
